@@ -1,0 +1,16 @@
+name: Build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+  steps:
+    - name: Get code
+      uses: actions/checkout@v3
+    - name: Install deps
+      run: npm ci
+    - name: Build project
+      run: npm run build
+    - name: Upload artifact
+      uses: actions/artifact@v3
+      with:
+        name: my-artifact
+        path: path/to/artifact/
